@@ -14,8 +14,8 @@ Base = declarative_base()
 class StocksValues(Base):
     """ Stock data model """
     __tablename__ = 'stocks_values'
-    id = Column(Integer, primary_key = True )
-    date = Column(DateTime)
+    index = Column(Integer, primary_key = True )
+    fecha = Column(DateTime)
     v_open = Column(Float)
     v_high = Column(Float)
     v_low = Column(Float)
