@@ -1,9 +1,0 @@
-name: Test ETL
-on: [push]
-jobs:
-  Test-ETL:
-    runs-on: ubuntu-18.04
-
-    steps:
-      - name: Python Test ETL
-        run: python .github/workflows/ex.py
