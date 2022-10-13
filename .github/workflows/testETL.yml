@@ -1,12 +1,9 @@
 name: Test ETL
-
-on:
-  push:
-    - master
-
+on: [push]
 jobs:
-  hello:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-18.04
-      steps:
-        -name: Echo the message
-        run: echo 'Hola mundo'
+
+    steps:
+      - name:
+        run: echo 'Hola Mundo'
