@@ -1,9 +1,9 @@
 name: Test ETL
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Test-ETL:
     runs-on: ubuntu-18.04
 
     steps:
-      - name:
-        run: echo 'Hola Mundo'
+      - name: Python Test ETL
+        run: Python print('Hola Mundo')
