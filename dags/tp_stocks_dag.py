@@ -21,9 +21,9 @@ from modules.ingest_data import stock_symbol
 from modules.read_load import readLoad
 
 dag = DAG(
-    dag_id="etl_stocks_",
+    dag_id="etl_stocks_final",
     description="descarga de datos",
-    start_date=airflow.utils.dates.days_ago(5),
+    start_date=airflow.utils.dates.days_ago(1),
     schedule_interval="@daily",
 )
 
@@ -50,7 +50,17 @@ load_data = PythonOperator(
     dag=dag
 )
 
-t1 = DummyOperator(task_id="hello-world2", dag= dag)
+t1 = DummyOperator(task_id="completed_load", dag= dag)
+
+from modules.report import reporting
+
+make_report = PythonOperator(
+    task_id = 'make_report',
+    python_callable = reporting,
+    #op_args = stock_symbol,
+    dag = dag
+)
+
 
 for company in stock_symbol:
     upstream_task = create_table
@@ -58,3 +68,5 @@ for company in stock_symbol:
     upstream_task.set_downstream(task)
     task.set_downstream(load_data)
     load_data.set_downstream(t1)
+
+t1.set_downstream(make_report)
