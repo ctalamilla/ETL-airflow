@@ -48,5 +48,5 @@ class psql_Client:
 
 if __name__ == '__main__':
     db = 'airflow:airflow@postgres:5432/stocks'
-    sqlite_cli = SqLiteClient(db)
-    print(sqlite_cli.to_frame('SELECT * FROM stocks_daily'))
+    #sqlite_cli = SqLiteClient(db)
+    #print(sqlite_cli.to_frame('SELECT * FROM stocks_daily'))
