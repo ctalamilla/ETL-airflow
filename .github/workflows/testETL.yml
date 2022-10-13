@@ -6,4 +6,4 @@ jobs:
 
     steps:
       - name: Python Test ETL
-        run: Python print('Hola Mundo')
+        run: python .github/workflows/ex.py
