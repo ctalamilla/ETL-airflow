@@ -4,12 +4,12 @@ from sqlalchemy import create_engine
 # engine = create_engine('postgresql://airflow:airflow@postgres:5432/stocks')
 class psql_Client:
     def __init__(self, db):
-        self.dialect = 'postgresql'
+        self.dialect = "postgresql"
         self.db = db
         self._engine = None
 
     def _get_engine(self):
-        db_uri = f'{self.dialect}://{self.db}'
+        db_uri = f"{self.dialect}://{self.db}"
         if not self._engine:
             self._engine = create_engine(db_uri)
         return self._engine
@@ -19,7 +19,7 @@ class psql_Client:
 
     @staticmethod
     def _cursor_columns(cursor):
-        if hasattr(cursor, 'keys'):
+        if hasattr(cursor, "keys"):
             return cursor.keys()
         else:
             return [c[0] for c in cursor.description]
@@ -29,7 +29,7 @@ class psql_Client:
             connection = self._connect()
         return connection.execute(sql)
 
-    def insert_from_frame(self, df, table, if_exists='append', index=False, **kwargs):
+    def insert_from_frame(self, df, table, if_exists="append", index=False, **kwargs):
         connection = self._connect()
         with connection:
             df.to_sql(table, connection, if_exists=if_exists, index=index, **kwargs)
@@ -46,7 +46,7 @@ class psql_Client:
         return df
 
 
-if __name__ == '__main__':
-    db = 'airflow:airflow@postgres:5432/stocks'
-    #sqlite_cli = SqLiteClient(db)
-    #print(sqlite_cli.to_frame('SELECT * FROM stocks_daily'))
+if __name__ == "__main__":
+    db = "airflow:airflow@postgres:5432/stocks"
+    # sqlite_cli = SqLiteClient(db)
+    # print(sqlite_cli.to_frame('SELECT * FROM stocks_daily'))

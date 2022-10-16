@@ -1,4 +1,3 @@
-
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -11,10 +10,12 @@ from datetime import datetime
 
 Base = declarative_base()
 
+
 class StocksValues(Base):
-    """ Stock data model """
-    __tablename__ = 'stocks_values'
-    index = Column(Integer, primary_key = True )
+    """Stock data model"""
+
+    __tablename__ = "stocks_values"
+    index = Column(Integer, primary_key=True)
     fecha = Column(DateTime)
     v_open = Column(Float)
     v_high = Column(Float)
@@ -22,13 +23,7 @@ class StocksValues(Base):
     v_close = Column(Float)
     volume = Column(Integer)
     symbol = Column(String(10))
-    created_at = Column(DateTime, default = datetime.now())
-    
+    created_at = Column(DateTime, default=datetime.now())
+
     def __repr__(self):
         return f"<StockValue(symbol='{self.symbol}', ...)>"
-
-
-    
-
-
-
